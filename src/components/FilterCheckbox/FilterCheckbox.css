@@ -3,6 +3,11 @@
     height:14px;
     position: relative;
     display:inline-block;
+    transition: opacity linear 0.1s;
+}
+
+.filter:hover{
+    opacity: 0.8;
 }
 
 .filter__input{

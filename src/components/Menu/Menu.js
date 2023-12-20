@@ -12,7 +12,7 @@ function Menu({isMenuOpened, toggleMenu, underlinedLink, setUnderlinedLink}){
     }
 
     return(
-        <div className={isMenuOpened ? 'menu-container menu-container_opened' : 'menu-container'}>
+        <section className={isMenuOpened ? 'menu-container menu-container_opened' : 'menu-container'}>
                 <div className="menu__background" onClick={toggleMenu}></div>
                 <div className={isMenuOpened ? 'menu__content menu__content_opened' : 'menu__content'}>
                     <div className='menu__link-list'>
@@ -22,7 +22,7 @@ function Menu({isMenuOpened, toggleMenu, underlinedLink, setUnderlinedLink}){
                         <Link to='/profile' className='menu__link menu__link_account' onClick={handleForward}>Аккаунт</Link>
                     </div>
                 </div>
-            </div>
+            </section>
     )
 }
 

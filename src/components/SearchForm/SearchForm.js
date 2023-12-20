@@ -4,10 +4,11 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
 
 function SearchForm(){
     return(
+        <section className='form__wrapper'>
             <form className='form__search'>
                 <div className='form__input-section'>
-                    <input className='form__search-input' placeholder='Фильм'/>
-                    <button className='form__submit-button'>
+                    <input className='form__search-input' placeholder='Фильм' required/>
+                    <button className='form__submit-button' type='submit' onClick={(e) => e.preventDefault()}>
                         <img src={submitImage} alt='submit-button'/>
                     </button>
                 </div>
@@ -16,6 +17,7 @@ function SearchForm(){
                     <p className='form__checkbox-caption'>Короткометражки</p>
                 </div>
             </form>
+        </section>
     )
 }
 

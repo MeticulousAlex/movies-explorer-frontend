@@ -17,14 +17,14 @@ function MoviesCard(props){
             return (
                 <>
                     {!isLiked && <button className="movies__card-save" onClick={toggleState}>Сохранить</button>}
-                    {isLiked && <button className="movies__card-saved" onClick={toggleState}>
+                    {isLiked && <button type='button' className="movies__card-saved" onClick={toggleState}>
                         <img src={savedIcon} alt='savedIcon'/>
                     </button>}
                 </>
             )
         } else if (props.page === "saved"){
             return(
-                <button className="movies__card-remove">
+                <button className="movies__card-remove" type='button'>
                     <img src={removeIcon} alt='removeIcon'/>
                 </button>
             )
@@ -34,7 +34,7 @@ function MoviesCard(props){
     return(
         <li className="movies__card">
             {pageAdapt()}
-            <img className="movies__film-preview" src={image} alt='movie' />
+            <img className="movies__film-preview" src={image} alt={props.alt} />
             <div className="movies__description-bar">
                 <h2 className="movies__movie-title">{props.name}</h2>
                 <p className='movies__movie-lenght'>{lengthHours + lengthMinutes}</p>

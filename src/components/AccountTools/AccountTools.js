@@ -12,7 +12,7 @@ function AccountTools({isEditMode, toggleEdit, setIsProfilePage, setIsAuthorized
     if (!isEditMode){
         return(
             <div className='tools__tool-list'>
-                <button className='tools__link tools__link_to-edit' onClick={() => {toggleEdit(true)}}>Редактировать</button>
+                <button type='button' className='tools__link tools__link_to-edit' onClick={() => toggleEdit(true)}>Редактировать</button>
                 <Link to='/'className='tools__link tools__link_signout' onClick={signout}>Выйти из аккаунта</Link>
             </div>
         )

@@ -5,10 +5,10 @@ import MoviesCards from '../MoviesCards/MoviesCards'
 
 function Movies(props){
     return(
-        <>
+        <main className='movie-page'>
             <SearchForm/>
             <MoviesCards films={films} page={props.page}/>
-        </>
+        </main>
     )
 }
 

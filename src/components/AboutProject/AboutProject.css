@@ -115,6 +115,7 @@
         flex-direction: column;
         gap:56px;
         padding:60px 0;
+        align-items: center;
     }
 
     .project__topic{

@@ -4,10 +4,11 @@ import AccountTab from '../AccountTab/AccountTab';
 
 import { Link } from 'react-router-dom';
 
-function Header({isAuthPage, isAuthorizedUser, setIsProfilePage, isMenuOpened, toggleMenu, underlinedLink, setUnderlinedLink, notFound}){
+function Header({isAuthPage, setIsAuthPage, isAuthorizedUser, setIsProfilePage, isMenuOpened, toggleMenu, underlinedLink, setUnderlinedLink, notFound}){
 
-    function toggleFooter(isFooter){
-        setIsProfilePage(!isFooter);
+    function resetHeaderFooter(isReset){
+        setIsProfilePage(!isReset);
+        setIsAuthPage(!isReset);
     }  
 
 
@@ -16,13 +17,12 @@ function Header({isAuthPage, isAuthorizedUser, setIsProfilePage, isMenuOpened, t
     if (notFound){
         return(null);
     } else {
-        console.log(isAuthorizedUser);
     return(
-        <div className={isAuthPage ? 'header header_auth' : 'header'}>
-             <Link to='/' className='header__logo' onClick={() => toggleFooter(true)}><img src = {logoPath} alt='logo'/></Link>
-             <Navigation isAuth={isAuthPage} toggleFooter={toggleFooter} isAuthorizedUser={isAuthorizedUser} underlinedLink={underlinedLink} setUnderlinedLink={setUnderlinedLink}/>
-             <AccountTab isAuthPage={isAuthPage} isAuthorizedUser={isAuthorizedUser} toggleFooter={toggleFooter} isMenuOpened={isMenuOpened} toggleMenu={toggleMenu} setUnderlinedLink={setUnderlinedLink}/>
-        </div>
+        <header className={isAuthPage ? 'header header_auth' : 'header'}>
+             <Link to='/' className='header__logo' onClick={() => resetHeaderFooter(true)}><img src = {logoPath} alt='логотип'/></Link>
+             <Navigation isAuth={isAuthPage} resetHeaderFooter={resetHeaderFooter} isAuthorizedUser={isAuthorizedUser} underlinedLink={underlinedLink} setUnderlinedLink={setUnderlinedLink}/>
+             <AccountTab isAuthPage={isAuthPage} isAuthorizedUser={isAuthorizedUser} isMenuOpened={isMenuOpened} toggleMenu={toggleMenu} setUnderlinedLink={setUnderlinedLink}/>
+        </header>
     )
     }
 }

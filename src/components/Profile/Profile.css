@@ -47,6 +47,16 @@
     border-bottom: 1px solid #424242;
 }
 
+.profile__input-row:focus-within .profile__input-name{
+    display:list-item;
+}
+
+.profile__input-name::marker{
+    content: '✱   ';
+    font-size: 10px;
+}
+
+
 .profile__input-row:last-of-type{
     border-bottom:none;
     padding: 16px 0 0;
@@ -128,6 +138,10 @@
 @media screen and (max-width:1279px) {
     .profile__greeting{
         padding:236px 0 96px;
+    }
+
+    .profile__form-submit-button{
+        margin-bottom:269px;
     }
 }
 

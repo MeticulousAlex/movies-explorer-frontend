@@ -13,13 +13,11 @@ function NotFoundPage({setNotFound}){
     })
 
     return(
-        <>
-            <div className='not-found__container'>
-                <p className='not-found__code'>404</p>
+            <main className='not-found__container'>
+                <h1 className='not-found__code'>404</h1>
                 <p className='not-found__message'>Страница не найдена</p>
                 <p className='not-found__return-button' onClick={goBack}>Назад</p>
-            </div>
-        </>
+            </main>
     )
 }
 

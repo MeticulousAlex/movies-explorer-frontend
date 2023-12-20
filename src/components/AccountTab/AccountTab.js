@@ -12,7 +12,7 @@ function AccountTab({isAuthorizedUser, isAuthPage, isMenuOpened, toggleMenu, set
         return(
             <>
                 <Link to='/profile' className='account-tab__account-link' onClick={() => setUnderlinedLink('account')}>Аккаунт</Link>
-                <button class="account-tab__menu-button" tabIndex="0" onClick={toggleMenu}>
+                <button className="account-tab__menu-button" tabIndex="0" onClick={toggleMenu} type='button'>
                         <span className={isMenuOpened ? 'account-tab__icon-bar account-tab__icon-bar_opened' : 'account-tab__icon-bar'}></span>
                         <span className={isMenuOpened ? 'account-tab__icon-bar account-tab__icon-bar_opened' : 'account-tab__icon-bar'}></span>
                         <span className={isMenuOpened ? 'account-tab__icon-bar account-tab__icon-bar_opened' : 'account-tab__icon-bar'}></span>

@@ -28,7 +28,7 @@ function App(){
 
 return(
     <div className='root'>
-        <Header isAuthPage={isAuthPage} isAuthorizedUser={isAuthorizedUser} setIsProfilePage={setIsProfilePage} isMenuOpened={isMenuOpened} toggleMenu={toggleMenu} underlinedLink={underlinedLink} setUnderlinedLink={setUnderlinedLink} notFound={notFound}/>
+        <Header isAuthPage={isAuthPage} setIsAuthPage={setIsAuthPage} isAuthorizedUser={isAuthorizedUser} setIsProfilePage={setIsProfilePage} isMenuOpened={isMenuOpened} toggleMenu={toggleMenu} underlinedLink={underlinedLink} setUnderlinedLink={setUnderlinedLink} notFound={notFound}/>
         <Menu isMenuOpened={isMenuOpened} toggleMenu={toggleMenu} underlinedLink={underlinedLink} setUnderlinedLink={setUnderlinedLink}/>
         <Routes>
             <Route path="/" element={<Main/>}/>
