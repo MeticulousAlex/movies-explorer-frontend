@@ -5,12 +5,15 @@
     position:relative;
     object-fit: contain;
     justify-self: center;
+    height:100%;
 }
 
 .movies__film-preview{
     width:100%;
-    height:fit-content;
-    object-fit: contain;
+    height:81.3%;
+    max-height:201px;
+    object-fit: cover;
+    border-radius: 6px;
 }
 
 .movies__card-save{
@@ -108,9 +111,18 @@
     .movies__description-bar{
         padding:25px 0 0;
     }
+
+    .movies__film-preview{
+        max-height: 190px;
+    }
 }
 
 @media screen and (max-width:767px){
+
+    .movies__film-preview{
+        max-height: 168px;
+    }
+
     .movies__card {
         max-width: 339px;
     }

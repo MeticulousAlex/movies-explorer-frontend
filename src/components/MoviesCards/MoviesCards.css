@@ -4,26 +4,33 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: calc(100vh - 78px - 216.6px - 177.4px);
 }
 
 .movies__grid{
-    margin:0;
-    padding: 80px 0 76px;
+    margin:0 0 auto 0;
+    padding: 80px 0 0;
     width: 100%;
     display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
     column-gap: 30px;
     row-gap: 58px;
 }
 
 .movies__grid_saved{
-    padding-bottom: 240px;
+    padding-bottom: 0;
+}
+
+.movies__not-found{
+    margin: auto 0;
+    color: white;
+    font-family: 'Inter', 'Arial', serif;
 }
 
 .movies__more-button{
     width:100%;
     max-width: 320px;
-    margin: 0 0 80px;
+    margin: 76px 0 80px;
     padding: 11px 0 9px; 
     background-color: #202020;
     border-radius: 6px;
@@ -50,11 +57,15 @@
 
     .movies__grid{
         row-gap: 45px;
-        padding: 80px 0 60px;
+        padding: 80px 0 0;
     }
 
     .movies__grid_saved{
         padding-bottom: 175px;
+    }
+
+    .movies__more-button{
+        margin-top:60px;
     }
 }
 
@@ -66,7 +77,7 @@
 
     .movies__grid{
         row-gap: 36px;
-        padding: 50px 0 60px;
+        padding: 50px 0 0;
     }
 
     .movies__grid_saved{

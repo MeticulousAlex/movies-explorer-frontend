@@ -4,10 +4,14 @@ import Registration from '../Registration/Registration';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function AuthPage({ pageType, setIsAuthPage, setIsAuthorizedUser }){
+function AuthPage({ pageType, setIsAuthPage, isAuthorizedUser, setIsAuthorizedUser, setCurrentUser, handleLogin, handleRegister, serverAuthErrorMessage, setServerAuthErrorMessage}){
 
     const navigate = useNavigate();
     const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+
+    const [name, setName] = React.useState('');
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
 
     const [timeoutId, setTimeoutId] = React.useState('');
     const [emailStatus, setEmailStatus] = React.useState(false);
@@ -18,9 +22,12 @@ function AuthPage({ pageType, setIsAuthPage, setIsAuthorizedUser }){
     const [nameError, setNameError] = React.useState('');
     const [emailError, setEmailError] =React.useState('');
     const [passwordError, setPasswordError] = React.useState('');
-    const [isServerErrorShown, setIsServerErrorShown] = React.useState(false)
+    const [isServerErrorShown, setIsServerErrorShown] = React.useState(false);
 
     const props = {
+        name: name,
+        email: email,
+        password: password,
         setIsAuthPage:setIsAuthPage,
         validateInputs:validateInputs,
         nameError:nameError,
@@ -29,14 +36,32 @@ function AuthPage({ pageType, setIsAuthPage, setIsAuthorizedUser }){
         submitButtonStatus:submitButtonStatus,
         leaveAuthPage:leaveAuthPage,
         resetForm:resetForm,
-        isServerErrorShown:isServerErrorShown
+        serverAuthErrorMessage:serverAuthErrorMessage,
+        isServerErrorShown:isServerErrorShown,
+        setCurrentUser: setCurrentUser,
+        handleLogin: handleLogin,
+        handleRegister: handleRegister
+
     }
 
-    function leaveAuthPage(e){
-        e.preventDefault();
-        navigate('/', {replace: true});
+    function leaveAuthPage(){
         setIsAuthPage(false);
         setIsAuthorizedUser(true);
+    }
+
+    function setValue(name, value){
+        switch(name) {
+            case "name":
+                setName(value);
+              break;
+            case "email":
+                setEmail(value);
+              break;
+            case "password":
+                setPassword(value);
+                break
+            default:
+          }
     }
 
     function displayError(name, msg){
@@ -49,7 +74,6 @@ function AuthPage({ pageType, setIsAuthPage, setIsAuthorizedUser }){
             } else {
                 setNameError(msg);
             }
-            setIsServerErrorShown(true);
         }, 550));
     }
 
@@ -57,11 +81,15 @@ function AuthPage({ pageType, setIsAuthPage, setIsAuthorizedUser }){
         setEmailStatus(false);
         setPasswordStatus(false);
         setSubmitButtonStatus(false);
-        if (pageType !== 'login'){
-            setNameStatus(true);
-        } else {
-            setNameStatus(false);
-        }
+        setNameError('')
+        setPasswordError('')
+        setEmailError('')
+        setName('')
+        setEmail('')
+        setPassword('')
+        setIsServerErrorShown(false);
+        pageType !== 'login' ? setNameStatus(true) : setNameStatus(false)
+        
 
     }
 
@@ -79,8 +107,10 @@ function AuthPage({ pageType, setIsAuthPage, setIsAuthorizedUser }){
         const element = e.target;
         const value = element.value;
         const name = element.name;
-
+        
+        setValue(name, value);
         clearError(name);
+        setServerAuthErrorMessage('');
 
         if (value === ''){
             displayError(name, 'Это обязательное поле');
@@ -106,9 +136,24 @@ function AuthPage({ pageType, setIsAuthPage, setIsAuthorizedUser }){
         }
     }
 
+    React.useEffect(() => {
+        console.log(serverAuthErrorMessage);
+        if (serverAuthErrorMessage){
+            setSubmitButtonStatus(false);
+            setIsServerErrorShown(true)
+        }
+    },[serverAuthErrorMessage])
+
+    React.useEffect(() => {
+        if (isAuthorizedUser){
+            setIsAuthPage(false);
+            navigate('/movies', {replace: true});
+        }
+    },[isAuthorizedUser])
+
     React.useEffect(() =>{
-        (!emailStatus || !passwordStatus || !nameStatus) ? setSubmitButtonStatus(false) : setSubmitButtonStatus(true);
-    },[emailStatus, passwordStatus, nameStatus]);
+        (!emailStatus || !passwordStatus || !nameStatus || serverAuthErrorMessage) ? setSubmitButtonStatus(false) : setSubmitButtonStatus(true);
+    },[emailStatus, passwordStatus, nameStatus, serverAuthErrorMessage]);
 
     if (pageType === 'login'){
         return(<Login props={props}/>)

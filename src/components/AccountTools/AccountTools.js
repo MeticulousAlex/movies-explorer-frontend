@@ -1,12 +1,18 @@
 import './AccountTools.css';
 import { Link } from 'react-router-dom';
+import { logout } from '../../utils/MainApi';
 
 function AccountTools({isEditMode, toggleEdit, setIsProfilePage, setIsAuthorizedUser}){
 
 
     function signout(){
-        setIsAuthorizedUser(false);
-        setIsProfilePage(false);
+        logout().then((res) =>{
+            console.log(res);
+            setIsAuthorizedUser(false);
+            setIsProfilePage(false);
+            localStorage.clear()
+        })
+        
     }
 
     if (!isEditMode){
