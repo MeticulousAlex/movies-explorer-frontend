@@ -7,7 +7,6 @@ function AccountTools({isEditMode, toggleEdit, setIsProfilePage, setIsAuthorized
 
     function signout(){
         logout().then((res) =>{
-            console.log(res);
             setSavedMovies(false);
             setIsFirstRequestDone(false);
             setIsAuthorizedUser(false);

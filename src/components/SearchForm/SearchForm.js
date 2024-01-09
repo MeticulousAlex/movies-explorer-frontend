@@ -7,28 +7,32 @@ function SearchForm({searchMovies, page}){
 
     const [formValue, setFormValue] = React.useState('');
     const [isShort, setIsShort] = React.useState(false);
-    const [isResultShown, setIsResultShown] = React.useState(false);
+    const [areFormValuesSet, setAreFormValuesSet] = React.useState(false);
 
     function handleChange(e){
         setFormValue(e.target.value);
     }
 
     function handleSubmit(e){
-        if (e){e.preventDefault()}
-        searchMovies(formValue, isShort, page);
-        setIsResultShown(true);
+        if (e){
+            e.preventDefault();
+            searchMovies(formValue, isShort, page, true, setAreFormValuesSet);
+        } else {
+            searchMovies(formValue, isShort, page);
+        }
         if (page === 'search'){
             localStorage.setItem('request', formValue);
             localStorage.setItem('isShort', isShort);
         }
     }
 
-    React.useEffect(() => {
-        setIsResultShown(false);
-    },[formValue])
+    // React.useEffect(() => {
+    //     setIsResultShown(false);
+    // },[formValue])
 
     React.useEffect(()=>{
-        if (isResultShown){
+        console.log(isShort, areFormValuesSet, page);
+        if (areFormValuesSet || page === 'saved'){
             handleSubmit()
         }
     },[isShort])
@@ -37,9 +41,10 @@ function SearchForm({searchMovies, page}){
         if (page === 'search'){
             const preloadedRequest = localStorage.getItem('request');
             const preloadedIsShort = localStorage.getItem('isShort');
-            if (preloadedRequest && preloadedIsShort && page === 'search'){
+            if (preloadedRequest && preloadedIsShort){
                 setFormValue(preloadedRequest);
                 setIsShort(preloadedIsShort === 'true' ? true : false);
+                setAreFormValuesSet(true);
             }
         } else if (page === 'saved'){
             setFormValue('');

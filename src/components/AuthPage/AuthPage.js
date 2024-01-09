@@ -34,6 +34,7 @@ function AuthPage({ pageType, setIsAuthPage, isAuthorizedUser, setIsAuthorizedUs
         emailError:emailError,
         passwordError:passwordError,
         submitButtonStatus:submitButtonStatus,
+        setSubmitButtonStatus:setSubmitButtonStatus,
         leaveAuthPage:leaveAuthPage,
         resetForm:resetForm,
         serverAuthErrorMessage:serverAuthErrorMessage,

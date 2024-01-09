@@ -2,11 +2,11 @@ import './MoviesCard.css'
 import savedIcon from '../../images/save-icon.svg';
 import removeIcon from '../../images/removeIcon.svg'
 import React from 'react';
-import { addMovie, removeMovie, getUserMovies } from '../../utils/MainApi.js';
+import { addMovie, removeMovie } from '../../utils/MainApi.js';
 
 const beatfilmsBaseUrl = 'https://api.nomoreparties.co';
 
-function MoviesCard({movie, page, isSavedPage, savedMovies, updateSavedMovies}){
+function MoviesCard({movie, page, isSavedPage, savedMovies}){
     const [isLiked, setIsLiked] = React.useState(false);
     const [filmDatabaseId, setFilmDatabaseId] = React.useState('') 
     const lengthHours = `${Math.floor(movie.duration / 60)}h `;
@@ -26,15 +26,16 @@ function MoviesCard({movie, page, isSavedPage, savedMovies, updateSavedMovies}){
             beatfilmsBaseUrl + movie.image.formats.thumbnail.url,
             movie.id
             ).then((res) => {
+                setIsLiked(true);
                 setFilmDatabaseId(res.movie._id);
-                updateSavedMovies();
+            }).catch((err) => {
+                console.log('Карточка не добавлена');
             })
     }
 
     function handleDeleteMovie(id){
         removeMovie(id).then((res) => {
-            updateSavedMovies();
-            
+            setIsLiked(false);
         });
     }
 
@@ -51,12 +52,13 @@ function MoviesCard({movie, page, isSavedPage, savedMovies, updateSavedMovies}){
 
     function toggleState(){
         isLiked ? findMovieToDelete() : handleSaveMovie();
-        setIsLiked(!isLiked);
     }
 
     React.useEffect(() => {
         if (page === 'search'){
             savedMovies.some((savedMovie) => savedMovie.movieId === movie.id ) ? setIsLiked(true) : setIsLiked(false);
+        } else {
+            savedMovies.some((savedMovie) => savedMovie.movieId === movie.movieId ) ? setIsLiked(true) : setIsLiked(false);
         }
         
     },[movie]);
@@ -75,6 +77,7 @@ function MoviesCard({movie, page, isSavedPage, savedMovies, updateSavedMovies}){
         }
     }
 
+    if(page==='search' || (page==='saved' && isLiked)){
     return(
         <li className="movies__card">
             {pageAdapt()}
@@ -84,7 +87,7 @@ function MoviesCard({movie, page, isSavedPage, savedMovies, updateSavedMovies}){
                 <p className='movies__movie-lenght'>{lengthHours + lengthMinutes}</p>
             </div>
         </li>
-    )
+    )} else {}
 }
 
 export default MoviesCard;

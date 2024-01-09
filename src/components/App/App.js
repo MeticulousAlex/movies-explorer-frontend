@@ -85,16 +85,19 @@ function App(){
         setIsAuthorizedUser(true);
     }
 
-    function searchMovies(inputValue, isShort, page){
+    function searchMovies(inputValue, isShort, page, isInitialRequest, setAreFormValuesSet){
         if (page === 'search'){
-            if (initialMovies.length === 0){
+            if (initialMovies.length === 0 && isInitialRequest){
                 setIsPreloader(true);
                 moviesApi.getInitialCards().then(res => res.json()).then((res) =>{
                      setIsFirstRequestDone(true);
                      setInitialMovies(res);
+                     setAreFormValuesSet(true);
                      setMovies(filterMovies(res, isShort, inputValue, page));
                      setIsPreloader(false);
                 });
+            } else if (initialMovies.length === 0 && !isInitialRequest){
+                setMovies(filterMovies(JSON.parse(localStorage.getItem('foundMovies')), isShort, inputValue, page));
             } else {
                 setMovies(filterMovies(initialMovies, isShort, inputValue, page));
             }
@@ -108,17 +111,20 @@ function App(){
     function filterMovies(movieList, isShort, inputValue, page){
 
         const filteredMovieList = movieList.filter((movie) => {
-
-            if (isShort){
-                return ((movie.nameRU.toLowerCase().includes(inputValue.toLowerCase()) || movie.nameEN.toLowerCase().includes(inputValue.toLowerCase())) && movie.duration <= 40);
-            }
-            
             return movie.nameRU.toLowerCase().includes(inputValue.toLowerCase()) || movie.nameEN.toLowerCase().includes(inputValue.toLowerCase());
         })
-        
+
         if (page === 'search'){
             localStorage.setItem('foundMovies', JSON.stringify(filteredMovieList));
         }
+
+        if (isShort){
+            const filteredShortFilms = filteredMovieList.filter((movie) =>{
+                return (movie.duration <= 40);
+            })
+            return filteredShortFilms
+        }
+        
         return filteredMovieList
     }
 

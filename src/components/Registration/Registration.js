@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { register, authorize } from '../../utils/MainApi';
 import './Registration.css';
 
 function Registration({props}){
 
     function handleSubmit(e){
         e.preventDefault()
+        props.setSubmitButtonStatus(false);
         props.handleRegister(props.name, props.email, props.password)
     }
 

@@ -56,7 +56,7 @@ function MoviesCards(props){
     function renderSavedCards(){
         const savedList = props.shownSavedMovies ? props.shownSavedMovies : props.savedMovies;
         const newCardsToRender = savedList.map(savedMovie => {
-            return(<MoviesCard key={savedMovie.movieId} movie={savedMovie} page={props.page} isSavedPage={true} updateSavedMovies={props.updateSavedMovies}/>)
+            return(<MoviesCard key={savedMovie.movieId} movie={savedMovie} page={props.page} isSavedPage={true} savedMovies={props.savedMovies} updateSavedMovies={props.updateSavedMovies}/>)
         })
 
         setCardsToRender(newCardsToRender);
@@ -76,7 +76,12 @@ function MoviesCards(props){
 
     React.useEffect(() => {
         props.setShownSavedMovies(false);
+        props.updateSavedMovies(handleReRender)
     }, [props.page]);
+
+    React.useEffect(() => {
+        handleReRender()
+    },[props.savedMovies])
 
     React.useEffect(() => {
         if (props.page==='saved'){
@@ -86,9 +91,7 @@ function MoviesCards(props){
 
     React.useEffect(() => {
         if (!props.savedMovies || props.isFirstRequestDone === false){
-            props.updateSavedMovies().then(() => {
-                handleReRender()    
-            })
+            props.updateSavedMovies(handleReRender)
         } else {
             handleReRender()
         }

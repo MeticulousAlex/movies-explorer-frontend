@@ -24,12 +24,11 @@ function Profile({setIsProfilePage, setIsAuthorizedUser, setCurrentUser, setUnde
     const [isNotificationShown, setIsNotificationShown] = React.useState(false)
     const [isErrorShown, setIsErrorShown] = React.useState(false);
 
-    const [serverProfileErrorMessage, setServerProfileErrorMessage] = React.useState('');
-
     const currentUser = React.useContext(CurrentUserContext);
 
     function handleSubmit(e){
         e.preventDefault();
+        isSubmitDisabled(true);
         patchUserData(newUserName,newUserEmail).then((res) =>{
             setIsNotificationShown(true);
             setTimeout(() =>{
@@ -99,7 +98,7 @@ function Profile({setIsProfilePage, setIsAuthorizedUser, setCurrentUser, setUnde
         if (newUserName === userName && newUserEmail === userEmail){
             setIsSubmitDisabled(true);
         }
-    },[newUserEmail, newUserName])
+    },[newUserEmail, newUserName, isEditMode])
 
     React.useEffect(() => {
         setIsProfilePage(true);

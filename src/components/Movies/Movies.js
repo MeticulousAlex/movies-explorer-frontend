@@ -8,8 +8,10 @@ import Preloader from '../Preloader/Preloader';
 function Movies(props){
 
     function updateOwnedMoviesList(){
-        return getUserMovies().then((res) => {
-            props.setSavedMovies(res.data)});
+        getUserMovies().then((res) => {
+            console.log('got movies')
+            props.setSavedMovies(res.data)
+        })
     }
 
     React.useEffect(() => {

@@ -5,9 +5,9 @@ import './Login.css';
 
 function Login({props}){
 
-
     function handleSubmit(e){
         e.preventDefault();
+        props.setSubmitButtonStatus(false);
         props.handleLogin(props.email, props.password);
             
     }
