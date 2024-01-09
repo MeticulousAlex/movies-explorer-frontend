@@ -23,13 +23,13 @@ function App(){
     const [isAuthorizedUser, setIsAuthorizedUser] = React.useState(false);
     const [currentUser, setCurrentUser] = React.useState({});
     const [isPreloader, setIsPreloader] = React.useState(false);
+    const [isFirstRequestDone, setIsFirstRequestDone] = React.useState(false);
     const [isAppReady, setIsAppReady] = React.useState(false);
     const [initialMovies, setInitialMovies] = React.useState([]);
     const [movies, setMovies] = React.useState(JSON.parse(localStorage.getItem('foundMovies') || '[]'));
     const [savedMovies, setSavedMovies] = React.useState(false)
     const [shownSavedMovies, setShownSavedMovies] = React.useState(false);
 
-    const [isMore, setIsMore] = React.useState(true);
     const [underlinedLink, setUnderlinedLink] = React.useState('main');
     const [notFound, setNotFound] = React.useState(false);
 
@@ -86,11 +86,11 @@ function App(){
     }
 
     function searchMovies(inputValue, isShort, page){
-        
         if (page === 'search'){
             if (initialMovies.length === 0){
                 setIsPreloader(true);
                 moviesApi.getInitialCards().then(res => res.json()).then((res) =>{
+                     setIsFirstRequestDone(true);
                      setInitialMovies(res);
                      setMovies(filterMovies(res, isShort, inputValue, page));
                      setIsPreloader(false);
@@ -140,9 +140,10 @@ return(
                      setIsAppReady={setIsAppReady}
                      isPreloader={isPreloader}
                      isAuthorizedUser={isAuthorizedUser}
+                     isFirstRequestDone={isFirstRequestDone}
+                     setIsFirstRequestDone={setIsFirstRequestDone}
                      page="search"
                      movies={movies}
-                     isMore={isMore}
                      searchMovies={searchMovies}
                      savedMovies={savedMovies}
                      shownSavedMovies={shownSavedMovies}
@@ -162,9 +163,10 @@ return(
                      isAuthorizedUser={isAuthorizedUser}
                      isAppReady={isAppReady}
                      setIsAppReady={setIsAppReady}
+                     isFirstRequestDone={isFirstRequestDone}
+                     setIsFirstRequestDone={setIsFirstRequestDone}
                      page="saved"
                      movies={movies}
-                     isMore={isMore}
                      searchMovies={searchMovies}
                      savedMovies={savedMovies}
                      shownSavedMovies={shownSavedMovies}
@@ -190,6 +192,7 @@ return(
                     setIsProfilePage={setIsProfilePage}
                     setIsAuthorizedUser={setIsAuthorizedUser}
                     setSavedMovies={setSavedMovies}
+                    setIsFirstRequestDone={setIsFirstRequestDone}
                     setUnderlinedLink={setUnderlinedLink}
                     />
                     }

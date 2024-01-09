@@ -2,12 +2,14 @@ import './AccountTools.css';
 import { Link } from 'react-router-dom';
 import { logout } from '../../utils/MainApi';
 
-function AccountTools({isEditMode, toggleEdit, setIsProfilePage, setIsAuthorizedUser}){
+function AccountTools({isEditMode, toggleEdit, setIsProfilePage, setIsAuthorizedUser, setSavedMovies, setIsFirstRequestDone}){
 
 
     function signout(){
         logout().then((res) =>{
             console.log(res);
+            setSavedMovies(false);
+            setIsFirstRequestDone(false);
             setIsAuthorizedUser(false);
             setIsProfilePage(false);
             localStorage.clear()

@@ -1,5 +1,4 @@
-// export const BASE_URL = 'https://api.alex.movie-explorer.nomoredomainsmonster.ru';
-export const BASE_URL = 'http://localhost:3000';
+import { BASE_URL } from "../constants/constants";
 
 export const register = (name,email, password) => {
   return fetch(`${BASE_URL}/signup`, {

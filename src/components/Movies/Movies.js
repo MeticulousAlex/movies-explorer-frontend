@@ -30,7 +30,7 @@ function Movies(props){
         <main className='movie-page'>
             <SearchForm searchMovies={props.searchMovies} page={props.page}/>
             {props.isPreloader ? <Preloader/> : 
-            <MoviesCards page={props.page} isMore={props.isMore} movies={props.movies} searchMovies={props.searchMovies} savedMovies={props.savedMovies} shownSavedMovies={props.shownSavedMovies} setShownSavedMovies={props.setShownSavedMovies} updateSavedMovies={updateOwnedMoviesList}/>}
+            <MoviesCards page={props.page} movies={props.movies} searchMovies={props.searchMovies} savedMovies={props.savedMovies} shownSavedMovies={props.shownSavedMovies} setShownSavedMovies={props.setShownSavedMovies} updateSavedMovies={updateOwnedMoviesList} isFirstRequestDone={props.isFirstRequestDone} setIsFirstRequestDone={props.setIsFirstRequestDone}/>}
         </main>
     )
 }

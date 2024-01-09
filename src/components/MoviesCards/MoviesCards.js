@@ -35,17 +35,22 @@ function MoviesCards(props){
     }
 
     function renderCards(cntCards){
-        let countOfCards = 0;
-        const newCardsToRender = props.movies.map(movie => {
-            countOfCards+=1;
-            if (countOfCards > cntCards){
-                return '';
-            }
-            setCurrentCard(countOfCards);
-            return (<MoviesCard key={movie.id} movie={movie} page={props.page} isSavedPage={false} savedMovies={props.savedMovies} updateSavedMovies={props.updateSavedMovies}/>)
-        })
+        if (props.isFirstRequestDone === false && !JSON.parse(localStorage.getItem('foundMovies'))){
+            setCardsToRender([]);
+        } else {
 
-        setCardsToRender(newCardsToRender);
+            let countOfCards = 0;
+            const newCardsToRender = props.movies.map(movie => {
+                countOfCards+=1;
+                if (countOfCards > cntCards){
+                    return '';
+                }
+                setCurrentCard(countOfCards);
+                return (<MoviesCard key={movie.id} movie={movie} page={props.page} isSavedPage={false} savedMovies={props.savedMovies} updateSavedMovies={props.updateSavedMovies}/>)
+            })
+
+            setCardsToRender(newCardsToRender);
+        }
     }
 
     function renderSavedCards(){
@@ -80,14 +85,9 @@ function MoviesCards(props){
     }, [props.savedMovies, props.movies, props.page, props.shownSavedMovies])
 
     React.useEffect(() => {
-        if (!props.savedMovies){
-            const preloadedRequest = localStorage.getItem('request');
-            const preloadedShortFilm = localStorage.getItem('isShort');
+        if (!props.savedMovies || props.isFirstRequestDone === false){
             props.updateSavedMovies().then(() => {
-                if (preloadedRequest && preloadedShortFilm){
-                    props.searchMovies(preloadedRequest, preloadedShortFilm === 'true');
-                    handleReRender();
-                }
+                handleReRender()    
             })
         } else {
             handleReRender()

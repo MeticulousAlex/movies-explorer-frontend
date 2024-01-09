@@ -1,6 +1,4 @@
-# Этап 3 JSX Вёрстка
+# Этап 4 - функциональность
 
-## Используемый макет:
-
-dark-2
-
+Ссылка на Pull Request : https://github.com/Sas-not-g/movies-explorer-frontend/pull/2 
+Ссылка на проект: https://alex.movie-explorer.nomoredomainsmonster.ru

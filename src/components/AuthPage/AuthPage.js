@@ -137,7 +137,6 @@ function AuthPage({ pageType, setIsAuthPage, isAuthorizedUser, setIsAuthorizedUs
     }
 
     React.useEffect(() => {
-        console.log(serverAuthErrorMessage);
         if (serverAuthErrorMessage){
             setSubmitButtonStatus(false);
             setIsServerErrorShown(true)

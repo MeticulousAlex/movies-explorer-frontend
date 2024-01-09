@@ -6,7 +6,7 @@ import { patchUserData } from '../../utils/MainApi.js';
 
 const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
-function Profile({setIsProfilePage, setIsAuthorizedUser, setCurrentUser, setUnderlinedLink}){
+function Profile({setIsProfilePage, setIsAuthorizedUser, setCurrentUser, setUnderlinedLink, setSavedMovies, setIsFirstRequestDone}){
 
     const [timeoutId, setTimeoutId] = React.useState('');
     const [fieldMode, setFieldMode] = React.useState(true);
@@ -133,7 +133,7 @@ function Profile({setIsProfilePage, setIsAuthorizedUser, setCurrentUser, setUnde
                     Сохранить
                 </button>
             </form>
-            <AccountTools isEditMode={isEditMode} toggleEdit={toggleEdit} setIsProfilePage={setIsProfilePage} setIsAuthorizedUser={setIsAuthorizedUser}/>
+            <AccountTools isEditMode={isEditMode} toggleEdit={toggleEdit} setIsProfilePage={setIsProfilePage} setIsAuthorizedUser={setIsAuthorizedUser} setSavedMovies={setSavedMovies} setIsFirstRequestDone={setIsFirstRequestDone}/>
         </main>
     )
 }
