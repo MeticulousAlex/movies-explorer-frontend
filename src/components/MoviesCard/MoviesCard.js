@@ -6,7 +6,7 @@ import { addMovie, removeMovie } from '../../utils/MainApi.js';
 
 const beatfilmsBaseUrl = 'https://api.nomoreparties.co';
 
-function MoviesCard({movie, page, isSavedPage, savedMovies}){
+function MoviesCard({movie, page, isSavedPage, savedMovies, setIsLikedListChanged}){
     const [isLiked, setIsLiked] = React.useState(false);
     const [filmDatabaseId, setFilmDatabaseId] = React.useState('') 
     const lengthHours = `${Math.floor(movie.duration / 60)}h `;
@@ -27,6 +27,7 @@ function MoviesCard({movie, page, isSavedPage, savedMovies}){
             movie.id
             ).then((res) => {
                 setIsLiked(true);
+                setIsLikedListChanged(true);
                 setFilmDatabaseId(res.movie._id);
             }).catch((err) => {
                 console.log('Карточка не добавлена');
@@ -35,6 +36,7 @@ function MoviesCard({movie, page, isSavedPage, savedMovies}){
 
     function handleDeleteMovie(id){
         removeMovie(id).then((res) => {
+            setIsLikedListChanged(true)
             setIsLiked(false);
         });
     }

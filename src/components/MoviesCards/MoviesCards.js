@@ -46,7 +46,7 @@ function MoviesCards(props){
                     return '';
                 }
                 setCurrentCard(countOfCards);
-                return (<MoviesCard key={movie.id} movie={movie} page={props.page} isSavedPage={false} savedMovies={props.savedMovies} updateSavedMovies={props.updateSavedMovies}/>)
+                return (<MoviesCard key={movie.id} movie={movie} page={props.page} isSavedPage={false} savedMovies={props.savedMovies} updateSavedMovies={props.updateSavedMovies} setIsLikedListChanged={props.setIsLikedListChanged}/>)
             })
 
             setCardsToRender(newCardsToRender);
@@ -56,7 +56,7 @@ function MoviesCards(props){
     function renderSavedCards(){
         const savedList = props.shownSavedMovies ? props.shownSavedMovies : props.savedMovies;
         const newCardsToRender = savedList.map(savedMovie => {
-            return(<MoviesCard key={savedMovie.movieId} movie={savedMovie} page={props.page} isSavedPage={true} savedMovies={props.savedMovies} updateSavedMovies={props.updateSavedMovies}/>)
+            return(<MoviesCard key={savedMovie.movieId} movie={savedMovie} page={props.page} isSavedPage={true} savedMovies={props.savedMovies} updateSavedMovies={props.updateSavedMovies} setIsLikedListChanged={props.setIsLikedListChanged}/>)
         })
 
         setCardsToRender(newCardsToRender);
@@ -76,6 +76,7 @@ function MoviesCards(props){
 
     React.useEffect(() => {
         props.setShownSavedMovies(false);
+        props.setIsLikedListChanged(false);
         props.updateSavedMovies(handleReRender)
     }, [props.page]);
 

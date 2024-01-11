@@ -3,7 +3,7 @@ import React from 'react';
 import submitImage from '../../images/movie-submit.svg';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
 
-function SearchForm({searchMovies, page}){
+function SearchForm({searchMovies, page, updateSavedMovies, isLikedListChanged, setIsLikedListChanged}){
 
     const [formValue, setFormValue] = React.useState('');
     const [isShort, setIsShort] = React.useState(false);
@@ -31,9 +31,12 @@ function SearchForm({searchMovies, page}){
     // },[formValue])
 
     React.useEffect(()=>{
-        console.log(isShort, areFormValuesSet, page);
         if (areFormValuesSet || page === 'saved'){
             handleSubmit()
+            if (isLikedListChanged){
+                updateSavedMovies();
+                setIsLikedListChanged(false);
+            }
         }
     },[isShort])
 
