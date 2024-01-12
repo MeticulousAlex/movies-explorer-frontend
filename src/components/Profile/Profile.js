@@ -8,7 +8,6 @@ const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
 function Profile({setIsProfilePage, setIsAuthorizedUser, setCurrentUser, setUnderlinedLink, setSavedMovies, setIsFirstRequestDone}){
 
-    const [timeoutId, setTimeoutId] = React.useState('');
     const [fieldMode, setFieldMode] = React.useState(true);
     const [isEditMode, setIsEditMode] = React.useState(false);
     const [userName, setUserName] = React.useState('')
@@ -28,10 +27,10 @@ function Profile({setIsProfilePage, setIsAuthorizedUser, setCurrentUser, setUnde
 
     function handleSubmit(e){
         e.preventDefault();
-        isSubmitDisabled(true);
+        setIsSubmitDisabled(true);
         patchUserData(newUserName,newUserEmail).then((res) =>{
             setIsNotificationShown(true);
-            setTimeout(() =>{
+            setTimeout(() => {
                 setIsNotificationShown(false)
                 toggleEdit(false)
             }, 5000);

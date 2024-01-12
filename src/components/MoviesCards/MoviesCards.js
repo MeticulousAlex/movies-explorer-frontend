@@ -76,8 +76,11 @@ function MoviesCards(props){
 
     React.useEffect(() => {
         props.setShownSavedMovies(false);
-        props.setIsLikedListChanged(false);
-        props.updateSavedMovies(handleReRender)
+        if (props.isLikedListChanged){
+            props.setIsLikedListChanged(false);
+            props.updateSavedMovies()  
+        }
+        
     }, [props.page]);
 
     React.useEffect(() => {
@@ -88,11 +91,11 @@ function MoviesCards(props){
         if (props.page==='saved'){
             handleReRender()
         }
-    }, [props.savedMovies, props.movies, props.page, props.shownSavedMovies])
+    }, [props.movies, props.page, props.shownSavedMovies])
 
     React.useEffect(() => {
         if (!props.savedMovies || props.isFirstRequestDone === false){
-            props.updateSavedMovies(handleReRender)
+            props.updateSavedMovies()
         } else {
             handleReRender()
         }

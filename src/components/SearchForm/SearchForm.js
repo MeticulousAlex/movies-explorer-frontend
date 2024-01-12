@@ -34,7 +34,7 @@ function SearchForm({searchMovies, page, updateSavedMovies, isLikedListChanged, 
         if (areFormValuesSet || page === 'saved'){
             handleSubmit()
             if (isLikedListChanged){
-                updateSavedMovies();
+                updateSavedMovies(isShort);
                 setIsLikedListChanged(false);
             }
         }

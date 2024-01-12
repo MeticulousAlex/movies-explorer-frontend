@@ -9,9 +9,12 @@ function Movies(props){
 
     const [isLikedListChanged, setIsLikedListChanged] = React.useState(false);
 
-    function updateOwnedMoviesList(){
+    function updateOwnedMoviesList(isShort){
         getUserMovies().then((res) => {
-            props.setSavedMovies(res.data)
+            props.setSavedMovies(res.data);
+            if (!isShort){
+                props.setShownSavedMovies(false);
+            }
         })
     }
 
@@ -33,7 +36,7 @@ function Movies(props){
         <main className='movie-page'>
             <SearchForm searchMovies={props.searchMovies} page={props.page} updateSavedMovies={updateOwnedMoviesList} isLikedListChanged={isLikedListChanged} setIsLikedListChanged={setIsLikedListChanged}/>
             {props.isPreloader ? <Preloader/> : 
-            <MoviesCards page={props.page} movies={props.movies} searchMovies={props.searchMovies} savedMovies={props.savedMovies} shownSavedMovies={props.shownSavedMovies} setShownSavedMovies={props.setShownSavedMovies} updateSavedMovies={updateOwnedMoviesList} isFirstRequestDone={props.isFirstRequestDone} setIsFirstRequestDone={props.setIsFirstRequestDone} setIsLikedListChanged={setIsLikedListChanged}/>}
+            <MoviesCards page={props.page} movies={props.movies} searchMovies={props.searchMovies} savedMovies={props.savedMovies} shownSavedMovies={props.shownSavedMovies} setShownSavedMovies={props.setShownSavedMovies} updateSavedMovies={updateOwnedMoviesList} isFirstRequestDone={props.isFirstRequestDone} setIsFirstRequestDone={props.setIsFirstRequestDone} isLikedListChanged={isLikedListChanged} setIsLikedListChanged={setIsLikedListChanged}/>}
         </main>
     )
 }
