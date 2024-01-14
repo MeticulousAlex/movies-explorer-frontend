@@ -63,7 +63,7 @@ function MoviesCard({movie, page, isSavedPage, savedMovies, setIsLikedListChange
             savedMovies.some((savedMovie) => savedMovie.movieId === movie.movieId ) ? setIsLiked(true) : setIsLiked(false);
         }
         
-    },[movie]);
+    },[movie, savedMovies]);
 
     function pageAdapt(){
         if (page === "search"){

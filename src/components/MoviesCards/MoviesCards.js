@@ -38,7 +38,6 @@ function MoviesCards(props){
         if (props.isFirstRequestDone === false && !JSON.parse(localStorage.getItem('foundMovies'))){
             setCardsToRender([]);
         } else {
-
             let countOfCards = 0;
             const newCardsToRender = props.movies.map(movie => {
                 countOfCards+=1;
@@ -116,7 +115,7 @@ function MoviesCards(props){
                 <p className="movies__not-found">Ой. Тут ничего нет :/ </p>
             }
 
-            {(props.page ==='search' && props.movies.length > currentCard)? <button className='movies__more-button' onClick={renderMoreCards}>Ещё</button> : null}
+            {(props.page ==='search' && props.movies.length > currentCard && cardsToRender.length !== 0)? <button className='movies__more-button' onClick={renderMoreCards}>Ещё</button> : null}
         </section>
     )
 }
