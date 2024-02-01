@@ -1,4 +1,3 @@
-# Этап 4 - функциональность
+# Frontend part of Movie-explorer
 
-Ссылка на Pull Request : https://github.com/Sas-not-g/movies-explorer-frontend/pull/2 
-Ссылка на проект: https://alex.movie-explorer.nomoredomainsmonster.ru
+Project page link: https://alex.movie-explorer.nomoredomainsmonster.ru
