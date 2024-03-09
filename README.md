@@ -2,4 +2,4 @@
 
 Project page link: https://alex.movie-explorer.nomoredomainsmonster.ru
 
-Backend part is here: https://github.com/Sas-not-g/movies-explorer-api
+Backend part is here: https://github.com/MeticulousAlex/movies-explorer-api
