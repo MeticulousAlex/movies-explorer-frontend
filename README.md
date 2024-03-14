@@ -1,11 +1,14 @@
-# Movie-explorer (frontend)
+# Movie-explorer (frontend) ![Static Badge](https://img.shields.io/badge/version-1.0-green)
+
 
 ## Technologies
 - JS
+- HTML
 - CSS
 - Webpack
 - ReactJS
-
+- OOP
+- BEM 
 
 ## Features
 
