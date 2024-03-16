@@ -8,8 +8,8 @@
 - CSS
 - Webpack
 - ReactJS
-- OOP
-- BEM 
+- OOП
+- БЭМ
 
 ## Функционал
 
