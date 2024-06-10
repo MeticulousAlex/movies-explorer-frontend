@@ -1,50 +1,51 @@
-# Movie-explorer (фронтенд) ![Static Badge](https://img.shields.io/badge/version-1.0-green)
+# Movie-explorer (frontend) ![Static Badge](https://img.shields.io/badge/version-1.0-green)
 
-Адаптивный проект включающий в себя поисковую систему фильмов с фильтрацией поиска и возможностью сохранения в любимые. 
+Project with adaptive layout including a movie-search system with possibility to filter the found results and to save a film as a favourite.
 
-## Технологии
+## Technologies
 - JS
 - HTML
 - CSS
 - Webpack
 - ReactJS
-- OOП
-- БЭМ
+- OOP
+- BEM
 
-## Функционал
+## Functionality
 
-- Регистрация/логин пользователя
-- Валидация форм
-- Адаптивная вёрстка 1280px/768px/320px
-- Работа со своим и сторонним API
-- Поиск из 100 фильмов 
-- Возможность сохранения/удаления фильма в любимые
-- Навигация на превью фильма при клике на обложку
+- Signin/Signup of user
+- Form validation
+- Adaptive layout 1280px/768px/320px
+- Usage of my own and third-party APIs
+- Search out of 100 films
+- Possibility to save/remove movie from favourite.
+- Navigation to film's preview after click on a film's cover.
 
-## Запуск проекта
+## How to start
 
 ```
-//клонируйте репозиторий
+//Clone repository
 git clone https://github.com/MeticulousAlex/movies-explorer-frontend.git
 
-//перейдите в папку проекта
+//Move to the projects folder
 cd movies-explorer-frontend
 
-//установите зависимости
+//Install dependencies
 npm install
 
-//запустите проект
+//Launch project
 npm start
 
 ```
 
 
-## Ссылки
+## Links
 
-- Сервис Movies-explorer : https://alex.movie-explorer.nomoredomainsmonster.ru
-- Бэкенд часть проекта: https://github.com/MeticulousAlex/movies-explorer-api
+- Website "Movies-explorer" : https://alex.movie-explorer.nomoredomainsmonster.ru
+- Backend part of project: https://github.com/MeticulousAlex/movies-explorer-api
 
-## Обратная связь
-Если вы нашли этот проект интересным или у вас есть какие либо комментарии, не стесняйтесь писать мне на aleksandr.smelov.web@gmail.com. 
+## Feedback
+
+If you found this project interesting or you have any comments, please, don't hesitate to write me at aleksandr.smelov.web@gmail.com. 
 
 
